@@ -14,7 +14,7 @@ size = Vector2(124, 39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ot216"]
 size = Vector2(77, 517)
 
-[node name="Pipe" type="Area2D" unique_id=1392440347]
+[node name="Pipe" type="Area2D" unique_id=1392440347 groups=["pipes"]]
 script = ExtResource("1_q6uvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=579749527]
@@ -66,5 +66,9 @@ offset_bottom = -135.00116
 rotation = 3.139181
 scale = Vector2(3.080001, 1)
 color = Color(0.45882353, 0.8509804, 0.039215688, 1)
+
+[node name="GapCenter" type="Marker2D" parent="." unique_id=1091318968]
+position = Vector2(41, -98)
+gizmo_extents = 14.4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

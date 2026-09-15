@@ -15,6 +15,14 @@ run/main_scene="uid://d0daw0ag6038o"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_rl_agents/plugin.cfg")
+
+[global_group]
+
+pipes=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

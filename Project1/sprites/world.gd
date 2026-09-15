@@ -24,4 +24,4 @@ func spawn_pipe_timeout() -> void:
 	
 	# Add it to the scene tree
 	add_child(pipe_instance)
-	$PipeTimer.start(randf_range(1.0,2.0))
+	$PipeTimer.start(randf_range(1.3,1.75))

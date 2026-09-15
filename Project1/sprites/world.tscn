@@ -8,7 +8,7 @@
 rotation = -0.002781914
 script = ExtResource("1_pu3cf")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1826187820]
+[node name="Background" type="ColorRect" parent="." unique_id=1826187820]
 offset_right = 1150.0
 offset_bottom = 650.0
 color = Color(0.3782817, 0.8332009, 0.9946466, 1)
