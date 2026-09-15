@@ -11,4 +11,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	
 func _on_body_entered(body: Node2D) -> void:
-	get_tree().call_deferred("reload_current_scene")
+	var bird_root = body.get_parent()
+
+	if bird_root.has_method("die"):
+		bird_root.die()

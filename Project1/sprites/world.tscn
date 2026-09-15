@@ -23,6 +23,7 @@ offset = Vector2(575, 325)
 position = Vector2(1078.5826, 511.00247)
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=943683697]
+z_index = 1
 offset_left = 545.98395
 offset_top = 6.5189037
 offset_right = 585.984

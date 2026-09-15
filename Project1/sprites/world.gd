@@ -25,3 +25,23 @@ func spawn_pipe_timeout() -> void:
 	# Add it to the scene tree
 	add_child(pipe_instance)
 	$PipeTimer.start(randf_range(1.3,1.75))
+
+
+func stop_game() -> void:
+	$ScoreTimer.stop()
+	$PipeTimer.stop()
+
+	for pipe in get_tree().get_nodes_in_group("pipes"):
+		pipe.set_physics_process(false)
+
+func reset_game() -> void:
+	for pipe in get_tree().get_nodes_in_group("pipes"):
+		remove_child(pipe)
+		pipe.queue_free()
+
+	score = 0
+	$ScoreLabel.text = "0"
+
+	$Bird.reset_bird()
+	spawn_pipe_timeout()
+	$ScoreTimer.start()

@@ -25,10 +25,4 @@ texture = ExtResource("1_0plrw")
 
 [node name="AIController2D" type="Node2D" parent="." unique_id=1508405360]
 script = ExtResource("3_s8fha")
-control_mode = null
-onnx_model_path = null
-reset_after = null
-expert_demo_save_path = null
-action_repeat = null
-policy_name = null
 metadata/_custom_type_script = "uid://c3gofurriv45m"
