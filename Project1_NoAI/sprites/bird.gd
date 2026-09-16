@@ -20,6 +20,13 @@ func _physics_process(delta: float) -> void:
 	# Call move_and_slide on the child node to move it
 	# Move the bird and check for collisions
 	var collided = bird.move_and_slide()
-	if collided:
+	
+	# Check the birds height, return true of the bird is out of bounds
+	var outside_play_area = (
+		bird.global_position.y < 0.0
+		or bird.global_position.y > 650.0
+	)
+
+	if collided or outside_play_area:
 		# Wipes the current scene out of memory and loads it completely fresh
 		get_tree().reload_current_scene()
