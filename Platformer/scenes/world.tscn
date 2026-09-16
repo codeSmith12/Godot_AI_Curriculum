@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://pbmoqjvodepq" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://da3arnja7nvk5" path="res://scenes/platform.tscn" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://bqpk47h2u8j1a" path="res://scenes/coin.tscn" id="3_4wyf3"]
+[ext_resource type="Script" uid="uid://ythhnmcc0548" path="res://scenes/score_label.gd" id="4_k0juu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwgxs"]
 size = Vector2(200, 40)
@@ -19,143 +21,271 @@ fill_to = Vector2(0.51521736, 0)
 
 [node name="World" type="Node2D" unique_id=619077012]
 
-[node name="Floor" parent="." unique_id=1329949325 instance=ExtResource("1_rwgxs")]
-position = Vector2(645, 277)
-
-[node name="CollisionShape2D" parent="Floor" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Floor2" parent="." unique_id=1715413956 instance=ExtResource("1_rwgxs")]
-position = Vector2(234, 200)
-
-[node name="CollisionShape2D" parent="Floor2" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor2" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Floor3" parent="." unique_id=858239081 instance=ExtResource("1_rwgxs")]
-position = Vector2(529, 49)
-
-[node name="CollisionShape2D" parent="Floor3" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor3" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Floor4" parent="." unique_id=2481081 instance=ExtResource("1_rwgxs")]
-position = Vector2(1465, -103)
-
-[node name="CollisionShape2D" parent="Floor4" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor4" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Floor5" parent="." unique_id=297714127 instance=ExtResource("1_rwgxs")]
-position = Vector2(1782, -25)
-rotation = 1.5796082
-scale = Vector2(0.31260762, 1.7443193)
-
-[node name="CollisionShape2D" parent="Floor5" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor5" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Floor6" parent="." unique_id=1222158881 instance=ExtResource("1_rwgxs")]
-position = Vector2(2039.0002, -108.00001)
-rotation = 1.5796082
-scale = Vector2(0.31260762, 1.7443193)
-
-[node name="CollisionShape2D" parent="Floor6" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor6" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Floor7" parent="." unique_id=844406458 instance=ExtResource("1_rwgxs")]
-position = Vector2(2282, -195.00002)
-rotation = 1.5796082
-scale = Vector2(0.31260762, 1.7443193)
-
-[node name="CollisionShape2D" parent="Floor7" index="0" unique_id=2010919183]
-shape = SubResource("RectangleShape2D_rwgxs")
-
-[node name="Sprite2D" parent="Floor7" index="1" unique_id=346459178]
-texture = SubResource("GradientTexture2D_4wyf3")
-
-[node name="Platform" parent="." unique_id=1642511972 instance=ExtResource("1_rwgxs")]
-position = Vector2(400, 400)
-
 [node name="Player" parent="." unique_id=980844804 instance=ExtResource("1_nnsk1")]
 position = Vector2(396, 337)
 
-[node name="Terrain" type="StaticBody2D" parent="." unique_id=1512224684]
+[node name="TerrainParts" type="Node" parent="." unique_id=442821237]
+
+[node name="Terrain" type="StaticBody2D" parent="TerrainParts" unique_id=1512224684]
 position = Vector2(1045, 29)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain" unique_id=762215620]
+[node name="Polygon2D" type="Polygon2D" parent="TerrainParts/Terrain" unique_id=762215620]
 color = Color(0.07058824, 0.8117647, 0.08235294, 1)
 polygon = PackedVector2Array(-344, -56, -344, 32.000015, 159.99994, 32.000015, 161.44, -153, -48, -152)
 uv = PackedVector2Array(-338, -32, -337.5, 26.5, 159.5, 25.5, 161.44, -153, -45.059998, -155)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain" unique_id=1122995846]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TerrainParts/Terrain" unique_id=1122995846]
 polygon = PackedVector2Array(-344, -56, -344, 32.000015, 159.99994, 32.000015, 161.44, -153, -48, -152)
 
-[node name="Terrain2" type="StaticBody2D" parent="." unique_id=703161221]
+[node name="Terrain2" type="StaticBody2D" parent="TerrainParts" unique_id=703161221]
 position = Vector2(2735, -243)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain2" unique_id=1104700437]
+[node name="Polygon2D" type="Polygon2D" parent="TerrainParts/Terrain2" unique_id=1104700437]
 color = Color(0.07058824, 0.8117647, 0.08235294, 1)
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 uv = PackedVector2Array(-167.99997, -87.99999, -88, -160, 40, -87.99999, -96, 8, -215.99997, -16)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain2" unique_id=1364304539]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TerrainParts/Terrain2" unique_id=1364304539]
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 
-[node name="Terrain3" type="StaticBody2D" parent="." unique_id=578605967]
+[node name="Terrain3" type="StaticBody2D" parent="TerrainParts" unique_id=578605967]
 position = Vector2(3172.0002, -292.00012)
 rotation = 2.547033
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain3" unique_id=1157174719]
+[node name="Polygon2D" type="Polygon2D" parent="TerrainParts/Terrain3" unique_id=1157174719]
 color = Color(0.07058824, 0.8117647, 0.08235294, 1)
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 uv = PackedVector2Array(-167.99997, -87.99999, -88, -160, 40, -87.99999, -96, 8, -215.99997, -16)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain3" unique_id=1409398375]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TerrainParts/Terrain3" unique_id=1409398375]
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 
-[node name="Terrain4" type="StaticBody2D" parent="." unique_id=1244135161]
+[node name="Terrain4" type="StaticBody2D" parent="TerrainParts" unique_id=1244135161]
 position = Vector2(3086, -831)
-rotation = 4.331004
+rotation = -1.9521812
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain4" unique_id=1960351057]
+[node name="Polygon2D" type="Polygon2D" parent="TerrainParts/Terrain4" unique_id=1960351057]
 color = Color(0.07058824, 0.8117647, 0.08235294, 1)
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 uv = PackedVector2Array(-167.99997, -87.99999, -88, -160, 40, -87.99999, -96, 8, -215.99997, -16)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain4" unique_id=1528699566]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TerrainParts/Terrain4" unique_id=1528699566]
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 
-[node name="Terrain5" type="StaticBody2D" parent="." unique_id=1056710584]
+[node name="Terrain5" type="StaticBody2D" parent="TerrainParts" unique_id=1056710584]
 position = Vector2(3577, -920.0001)
-rotation = 5.1350584
+rotation = -1.1481268
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain5" unique_id=766587042]
+[node name="Polygon2D" type="Polygon2D" parent="TerrainParts/Terrain5" unique_id=766587042]
 color = Color(0.07058824, 0.8117647, 0.08235294, 1)
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 uv = PackedVector2Array(-167.99997, -87.99999, -88, -160, 40, -87.99999, -96, 8, -215.99997, -16)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain5" unique_id=1912606936]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TerrainParts/Terrain5" unique_id=1912606936]
 polygon = PackedVector2Array(-256, -111.99999, -88, -160, 136, -87.99999, -96, 8, -224, 40)
 
-[editable path="Floor"]
-[editable path="Floor2"]
-[editable path="Floor3"]
-[editable path="Floor4"]
-[editable path="Floor5"]
-[editable path="Floor6"]
-[editable path="Floor7"]
+[node name="Floor" parent="TerrainParts" unique_id=1329949325 instance=ExtResource("1_rwgxs")]
+position = Vector2(645, 277)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Floor2" parent="TerrainParts" unique_id=1715413956 instance=ExtResource("1_rwgxs")]
+position = Vector2(234, 200)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor2" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor2" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Floor3" parent="TerrainParts" unique_id=858239081 instance=ExtResource("1_rwgxs")]
+position = Vector2(529, 49)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor3" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor3" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Floor4" parent="TerrainParts" unique_id=2481081 instance=ExtResource("1_rwgxs")]
+position = Vector2(1465, -103)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor4" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor4" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Floor5" parent="TerrainParts" unique_id=297714127 instance=ExtResource("1_rwgxs")]
+position = Vector2(1782, -25)
+rotation = 1.5796082
+scale = Vector2(0.31260762, 1.7443193)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor5" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor5" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Floor6" parent="TerrainParts" unique_id=1222158881 instance=ExtResource("1_rwgxs")]
+position = Vector2(2039.0002, -108.00001)
+rotation = 1.5796082
+scale = Vector2(0.31260762, 1.7443193)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor6" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor6" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Floor7" parent="TerrainParts" unique_id=844406458 instance=ExtResource("1_rwgxs")]
+position = Vector2(2282, -195.00002)
+rotation = 1.5796082
+scale = Vector2(0.31260762, 1.7443193)
+
+[node name="CollisionShape2D" parent="TerrainParts/Floor7" index="0" unique_id=2010919183]
+shape = SubResource("RectangleShape2D_rwgxs")
+
+[node name="Sprite2D" parent="TerrainParts/Floor7" index="1" unique_id=346459178]
+texture = SubResource("GradientTexture2D_4wyf3")
+
+[node name="Platform" parent="TerrainParts" unique_id=1642511972 instance=ExtResource("1_rwgxs")]
+position = Vector2(400, 400)
+
+[node name="Collectables" type="Node" parent="." unique_id=2070650467]
+
+[node name="Coin" parent="Collectables" unique_id=1742568571 instance=ExtResource("3_4wyf3")]
+position = Vector2(292, 351)
+
+[node name="Coin2" parent="Collectables" unique_id=1702097977 instance=ExtResource("3_4wyf3")]
+position = Vector2(433, 260)
+
+[node name="Coin3" parent="Collectables" unique_id=1538297293 instance=ExtResource("3_4wyf3")]
+position = Vector2(498, 208)
+
+[node name="Coin4" parent="Collectables" unique_id=1772827109 instance=ExtResource("3_4wyf3")]
+position = Vector2(638, 201)
+
+[node name="Coin5" parent="Collectables" unique_id=1780906751 instance=ExtResource("3_4wyf3")]
+position = Vector2(390, 119)
+
+[node name="Coin6" parent="Collectables" unique_id=530268274 instance=ExtResource("3_4wyf3")]
+position = Vector2(240, 105)
+
+[node name="Coin7" parent="Collectables" unique_id=1334600257 instance=ExtResource("3_4wyf3")]
+position = Vector2(140, 45)
+
+[node name="Coin8" parent="Collectables" unique_id=38298556 instance=ExtResource("3_4wyf3")]
+position = Vector2(365, -8)
+
+[node name="Coin9" parent="Collectables" unique_id=24687789 instance=ExtResource("3_4wyf3")]
+position = Vector2(465, -68)
+
+[node name="Coin10" parent="Collectables" unique_id=1458789762 instance=ExtResource("3_4wyf3")]
+position = Vector2(584, -73)
+
+[node name="Coin11" parent="Collectables" unique_id=1073093774 instance=ExtResource("3_4wyf3")]
+position = Vector2(754, -149)
+
+[node name="Coin12" parent="Collectables" unique_id=713866049 instance=ExtResource("3_4wyf3")]
+position = Vector2(820, -241)
+
+[node name="Coin13" parent="Collectables" unique_id=941138772 instance=ExtResource("3_4wyf3")]
+position = Vector2(953, -241)
+
+[node name="Coin14" parent="Collectables" unique_id=1092757362 instance=ExtResource("3_4wyf3")]
+position = Vector2(1114, -232)
+
+[node name="Coin15" parent="Collectables" unique_id=1937469339 instance=ExtResource("3_4wyf3")]
+position = Vector2(1374, -249)
+
+[node name="Coin16" parent="Collectables" unique_id=1371066744 instance=ExtResource("3_4wyf3")]
+position = Vector2(1424, -198)
+
+[node name="Coin17" parent="Collectables" unique_id=392368079 instance=ExtResource("3_4wyf3")]
+position = Vector2(1468, -245)
+
+[node name="Coin18" parent="Collectables" unique_id=642980240 instance=ExtResource("3_4wyf3")]
+position = Vector2(1510, -198)
+
+[node name="Coin19" parent="Collectables" unique_id=1996814859 instance=ExtResource("3_4wyf3")]
+position = Vector2(1549, -252)
+
+[node name="Coin20" parent="Collectables" unique_id=2049175718 instance=ExtResource("3_4wyf3")]
+position = Vector2(1668, -165)
+
+[node name="Coin21" parent="Collectables" unique_id=1468214001 instance=ExtResource("3_4wyf3")]
+position = Vector2(1781, -85)
+
+[node name="Coin22" parent="Collectables" unique_id=1892367022 instance=ExtResource("3_4wyf3")]
+position = Vector2(2037, -161)
+
+[node name="Coin23" parent="Collectables" unique_id=950164078 instance=ExtResource("3_4wyf3")]
+position = Vector2(1894, -199)
+
+[node name="Coin24" parent="Collectables" unique_id=1195972287 instance=ExtResource("3_4wyf3")]
+position = Vector2(2142, -239)
+
+[node name="Coin25" parent="Collectables" unique_id=1626608820 instance=ExtResource("3_4wyf3")]
+position = Vector2(2281, -244)
+
+[node name="Coin26" parent="Collectables" unique_id=276945487 instance=ExtResource("3_4wyf3")]
+position = Vector2(2359, -343)
+
+[node name="Coin27" parent="Collectables" unique_id=1442043973 instance=ExtResource("3_4wyf3")]
+position = Vector2(2523, -414)
+
+[node name="Coin28" parent="Collectables" unique_id=381673899 instance=ExtResource("3_4wyf3")]
+position = Vector2(2735, -421)
+
+[node name="Coin29" parent="Collectables" unique_id=1606882235 instance=ExtResource("3_4wyf3")]
+position = Vector2(2968, -416)
+
+[node name="Coin30" parent="Collectables" unique_id=364229084 instance=ExtResource("3_4wyf3")]
+position = Vector2(3132, -243)
+
+[node name="Coin31" parent="Collectables" unique_id=295654223 instance=ExtResource("3_4wyf3")]
+position = Vector2(3250, -420)
+
+[node name="Coin32" parent="Collectables" unique_id=1634421724 instance=ExtResource("3_4wyf3")]
+position = Vector2(3374, -464)
+
+[node name="Coin33" parent="Collectables" unique_id=1510826779 instance=ExtResource("3_4wyf3")]
+position = Vector2(3314, -590)
+
+[node name="Coin34" parent="Collectables" unique_id=832767048 instance=ExtResource("3_4wyf3")]
+position = Vector2(3188, -710)
+
+[node name="Coin35" parent="Collectables" unique_id=932722230 instance=ExtResource("3_4wyf3")]
+position = Vector2(3084, -846)
+
+[node name="Coin36" parent="Collectables" unique_id=85429039 instance=ExtResource("3_4wyf3")]
+position = Vector2(3410, -951)
+
+[node name="Coin37" parent="Collectables" unique_id=557477002 instance=ExtResource("3_4wyf3")]
+position = Vector2(3475, -1033)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1090741263]
+
+[node name="ScoreLabel" type="Label" parent="UILayer" unique_id=1879282628]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 81.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+script = ExtResource("4_k0juu")
+
+[editable path="TerrainParts/Floor"]
+[editable path="TerrainParts/Floor2"]
+[editable path="TerrainParts/Floor3"]
+[editable path="TerrainParts/Floor4"]
+[editable path="TerrainParts/Floor5"]
+[editable path="TerrainParts/Floor6"]
+[editable path="TerrainParts/Floor7"]
