@@ -1,0 +1,30 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Local Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated Godot data (keep .uid and .import source metadata)
+.godot/
+
+# Exported game builds
+/exports/
+/Project1/exports/
+
+# Training logs and intermediate checkpoints
+/logs/
+/Project1/logs/
+
+# Ad hoc training models saved at the repository root.
+# Curated models in Project1/agents/ remain available to commit.
+/flappy_*.zip
+
+# Local export credentials
+export_credentials.cfg

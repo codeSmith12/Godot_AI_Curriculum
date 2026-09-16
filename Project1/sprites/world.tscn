@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c0onhontt63ps" path="res://sprites/world.gd" id="1_pu3cf"]
 [ext_resource type="PackedScene" uid="uid://bsp3sw5nf2jnl" path="res://sprites/bird.tscn" id="1_qf4lk"]
 [ext_resource type="PackedScene" uid="uid://4ey5u1xjnomg" path="res://sprites/pipe.tscn" id="2_4rlb7"]
+[ext_resource type="Script" uid="uid://dqytt5pjyme4i" path="res://addons/godot_rl_agents/sync.gd" id="4_ufrfp"]
 
 [node name="World" type="Node2D" unique_id=2029605733]
 rotation = -0.002781914
@@ -37,6 +38,13 @@ autostart = true
 [node name="PipeTimer" type="Timer" parent="." unique_id=2120010815]
 one_shot = true
 autostart = true
+
+[node name="Sync" type="Node" parent="." unique_id=1362123673]
+process_mode = 3
+script = ExtResource("4_ufrfp")
+action_repeat = 1
+speed_up = 8.0
+metadata/_custom_type_script = "uid://dqytt5pjyme4i"
 
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="PipeTimer" to="." method="spawn_pipe_timeout"]

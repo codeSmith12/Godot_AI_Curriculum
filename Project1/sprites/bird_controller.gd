@@ -9,6 +9,8 @@ var flap_requested := false
 # Your moving body is a sibling of this controller.
 @onready var bird: CharacterBody2D = $"../CharacterBody2D"
 
+func _physics_process(_delta: float) -> void:
+	pass
 
 func get_obs() -> Dictionary:
 	# Default Target when there are no pipes
