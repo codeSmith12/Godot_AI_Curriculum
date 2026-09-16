@@ -131,12 +131,19 @@ func _box(color: Color) -> StyleBoxFlat:
 	return style
 
 func _arrow(start: Vector2, end: Vector2, color: Color, width := 3.0) -> void:
-	if start.distance_to(end) < 2:
+	var length := start.distance_to(end)
+	if length < 2:
 		return
-	canvas.draw_line(start, end, Color(0.05, 0.12, 0.2, 0.5), width + 3, true)
-	canvas.draw_line(start, end, color, width, true)
 	var direction := (end - start).normalized()
-	canvas.draw_colored_polygon(PackedVector2Array([end, end - direction.rotated(0.48) * 14, end - direction.rotated(-0.48) * 14]), color)
+	var head_length := minf(14.0, length)
+	var head_base := end - direction * head_length
+	var side := direction.orthogonal() * head_length * 0.5
+	# Stop both strokes at the head's base, not at its pointed tip.
+	# Very short velocity arrows become a small triangle with no protruding shaft.
+	if length > head_length:
+		canvas.draw_line(start, head_base, Color(0.05, 0.12, 0.2, 0.5), width + 3, true)
+		canvas.draw_line(start, head_base, color, width, true)
+	canvas.draw_colored_polygon(PackedVector2Array([end, head_base + side, head_base - side]), color)
 
 func _ruler(x: float, y: float, color: Color) -> void:
 	canvas.draw_line(Vector2(x, 8), Vector2(x, y), color, 2, true)
@@ -152,7 +159,6 @@ func _draw_overlay() -> void:
 		if heights:
 			_ruler(42, position.y, GREEN)
 			canvas.draw_dashed_line(Vector2(42, position.y), position, Color(GREEN, 0.8), 2, 6)
-			_tag(Vector2(58, maxf(38, position.y * 0.5)), "BIRD HEIGHT", GREEN)
 		if marker != null:
 			var target: Vector2 = marker.global_position
 			if geometry:
@@ -163,18 +169,11 @@ func _draw_overlay() -> void:
 				_arrow(position, target, CYAN, 2.5)
 				canvas.draw_arc(target, 23, 0, TAU, 48, CYAN, 3, true)
 				canvas.draw_circle(target, 5, Color.WHITE)
-				_tag(Vector2(target.x - 135, minf(target.y, position.y) - 58), "SELECTED GAP", CYAN)
-				_tag((position + corner) * 0.5 + Vector2(-40, -12), "DISTANCE AHEAD", GOLD)
-				_tag((corner + target) * 0.5 + Vector2(-145, 32), "GAP OFFSET", PINK)
 			if heights:
 				_ruler(minf(target.x + 75, 1118), target.y, Color(CYAN, 0.7))
-				_tag(Vector2(minf(target.x + 88, 980), 54), "GAP HEIGHT*", CYAN)
-		else:
-			_tag(Vector2(400, 100), "NO PIPE — default target ahead", CYAN)
 		if velocity:
 			var end := position + Vector2(0, clampf(bird.velocity.y * 0.22, -145, 145))
 			_arrow(position + Vector2(-32, 0), end + Vector2(-32, 0), Color.WHITE, 5)
-			_tag(position + Vector2(-95, 65), "RISING" if bird.velocity.y < 0 else "FALLING", Color.WHITE)
 		if flap_flash > 0:
 			canvas.draw_arc(position, 28 + (1 - flap_flash) * 35, 0, TAU, 48, Color(GOLD, flap_flash), 4, true)
 
@@ -205,7 +204,7 @@ func _draw_overlay() -> void:
 		var x := 26.0 + i * 282
 		_text(Vector2(x, 678), names[i], colors[i], 13)
 		_text(Vector2(x, 711), "%+.2f" % snapshot.obs[i], Color.WHITE, 25)
-	_text(Vector2(26, 733), "Normalized inputs  ·  *Gap height is a teaching guide; the policy receives the relative gap offset.", MUTED, 12)
+	_text(Vector2(26, 733), "Normalized inputs  ·  The gap-height ruler is a guide; the policy receives the relative gap offset.", MUTED, 12)
 	if paused:
 		_tag(Vector2(490, 320), "PAUSED — inspect the observations", GOLD)
 	if death_flash > 0:

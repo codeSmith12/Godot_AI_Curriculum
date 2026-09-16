@@ -25,7 +25,7 @@ A self-contained classroom demo copied from `Project1`. The student project is u
 | Bottom observation strip | The four scaled values returned by `get_obs()` |
 | Probability bar | Flap probability at the most recent local policy decision |
 
-The policy and overlay share `bird_controller.observation_snapshot()`. The overlay displays live state; the probability bar describes the last decision, just before that physics step moved the bird. The target selection and four input definitions match the student project. The extra gap-height ruler is explicitly marked with an asterisk because the policy receives relative offset instead.
+The policy and overlay share `bird_controller.observation_snapshot()`. The overlay displays live state; the probability bar describes the last decision, just before that physics step moved the bird. The target selection and four input definitions match the student project. The gap-height ruler is an explanatory guide; the policy receives relative offset instead. Floating measurement labels are omitted to keep the play area clear; the fixed bottom legend identifies the observation colors. The original score is visible at the top and counts survival timer ticks, not pipes passed.
 
 ## Controls
 
@@ -108,3 +108,9 @@ Godot --headless --path . --script res://tests/demo_check.gd
 ```
 
 The first compares GDScript against saved Python predictions. The second checks target selection, paused movement, slow motion, switching pilots, death/reset, and overlay toggles. Running the second with a graphical display also writes `/tmp/flappy-master.png` for visual inspection.
+
+## Window size and resizing
+
+The layout uses a fixed **1480 × 740 viewport**. Keep those viewport dimensions unchanged. To open a larger demo, change **Display → Window → Size → Window Width/Height Override**, currently **1776 × 888**.
+
+Canvas-item stretching scales the game and teaching panel together. Aspect is set to Keep, so differently shaped windows use letterboxing rather than exposing space beyond the fixed layout. This changes presentation size without changing the game coordinates or the agent's observation scales.

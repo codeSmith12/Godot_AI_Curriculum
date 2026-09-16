@@ -61,7 +61,7 @@ func _ready() -> void:
 	external_training = "--train" in OS.get_cmdline_user_args()
 	if external_training:
 		$Sync.control_mode = 1
-	$ScoreLabel.hide()
+	$ScoreLabel.show()
 
 func _physics_process(delta: float) -> void:
 	if not $Bird.dead:

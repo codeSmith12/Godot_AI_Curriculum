@@ -15,6 +15,15 @@ run/main_scene="res://sprites/world.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1480
+window/size/viewport_height=740
+window/size/mode=2
+window/size/window_width_override=1776
+window/size/window_height_override=888
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_rl_agents/plugin.cfg")
@@ -31,11 +40,3 @@ pipes=""
 
 rendering_device/driver.windows="d3d12"
 textures/vram_compression/import_etc2_astc=true
-
-[display]
-
-window/size/viewport_width=1480
-window/size/viewport_height=740
-window/size/window_width_override=1332
-window/size/window_height_override=666
-window/stretch/mode="canvas_items"
