@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://d0daw0ag6038o"]
+
+[ext_resource type="Script" uid="uid://c0onhontt63ps" path="res://sprites/world.gd" id="1_pu3cf"]
+[ext_resource type="PackedScene" uid="uid://bsp3sw5nf2jnl" path="res://sprites/bird.tscn" id="1_qf4lk"]
+[ext_resource type="PackedScene" uid="uid://4ey5u1xjnomg" path="res://sprites/pipe.tscn" id="2_4rlb7"]
+[ext_resource type="Script" uid="uid://dqytt5pjyme4i" path="res://addons/godot_rl_agents/sync.gd" id="4_ufrfp"]
+
+[ext_resource type="Script" path="res://demo/observation_lab.gd" id="5_lab"]
+
+[node name="World" type="Node2D" unique_id=2029605733]
+rotation = -0.002781914
+script = ExtResource("1_pu3cf")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1826187820]
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0.3782817, 0.8332009, 0.9946466, 1)
+
+[node name="Bird" parent="." unique_id=258371040 instance=ExtResource("1_qf4lk")]
+position = Vector2(200, 200)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1098375086]
+enabled = false
+offset = Vector2(575, 325)
+
+[node name="Pipe" parent="." unique_id=1040217775 instance=ExtResource("2_4rlb7")]
+position = Vector2(1078.5826, 511.00247)
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=943683697]
+z_index = 1
+offset_left = 545.98395
+offset_top = 6.5189037
+offset_right = 585.984
+offset_bottom = 73.518906
+theme_override_font_sizes/font_size = 48
+text = "0"
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1243020725]
+autostart = true
+
+[node name="PipeTimer" type="Timer" parent="." unique_id=2120010815]
+one_shot = true
+autostart = true
+
+[node name="Sync" type="Node" parent="." unique_id=1362123673]
+process_mode = 3
+script = ExtResource("4_ufrfp")
+action_repeat = 1
+speed_up = 1.0
+control_mode = 0
+metadata/_custom_type_script = "uid://dqytt5pjyme4i"
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PipeTimer" to="." method="spawn_pipe_timeout"]
+
+[node name="ObservationLab" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("5_lab")

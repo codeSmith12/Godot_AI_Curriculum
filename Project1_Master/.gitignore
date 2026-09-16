@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+/exports/
+/logs/
+.venv/
+__pycache__/
+/flappy_*.zip

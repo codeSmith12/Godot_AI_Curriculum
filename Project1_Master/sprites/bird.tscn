@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bsp3sw5nf2jnl"]
+
+[ext_resource type="Texture2D" uid="uid://ktr1c17yuwde" path="res://sprites/FlappyBird.png" id="1_0plrw"]
+[ext_resource type="Script" uid="uid://bsiiuvx26ut83" path="res://sprites/bird.gd" id="1_3iif0"]
+[ext_resource type="Script" uid="uid://3iu760kgf1pp" path="res://sprites/bird_controller.gd" id="3_s8fha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iif0"]
+radius = 21.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s8fha"]
+
+[node name="Bird" type="Node2D" unique_id=258371040]
+script = ExtResource("1_3iif0")
+jump_velocity = 400
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2018856730]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=714366208]
+shape = SubResource("CircleShape2D_3iif0")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1731416088]
+material = SubResource("CanvasItemMaterial_s8fha")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0plrw")
+
+[node name="AIController2D" type="Node2D" parent="." unique_id=1508405360]
+script = ExtResource("3_s8fha")
+metadata/_custom_type_script = "uid://c3gofurriv45m"

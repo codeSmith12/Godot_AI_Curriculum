@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://4ey5u1xjnomg"]
+
+[ext_resource type="Script" uid="uid://4nl8n5lchbnd" path="res://sprites/pipe.gd" id="1_q6uvd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6uvd"]
+size = Vector2(20.000011, 15.027175)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v0m7"]
+size = Vector2(20, 1.4807471)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71lnq"]
+size = Vector2(124, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ot216"]
+size = Vector2(77, 517)
+
+[node name="Pipe" type="Area2D" unique_id=1392440347 groups=["pipes"]]
+script = ExtResource("1_q6uvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=579749527]
+position = Vector2(40, 297.5)
+scale = Vector2(3.9999976, 36.8)
+shape = SubResource("RectangleShape2D_q6uvd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1913678673]
+position = Vector2(39, 1.4999995)
+scale = Vector2(6.084415, 26.338053)
+shape = SubResource("RectangleShape2D_5v0m7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=81809376]
+position = Vector2(42, -194)
+shape = SubResource("RectangleShape2D_71lnq")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." unique_id=704813654]
+position = Vector2(40.5, -473.5)
+shape = SubResource("RectangleShape2D_ot216")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1869662881]
+offset_right = 80.0
+offset_bottom = 400.0
+scale = Vector2(1, 1.4399998)
+color = Color(0.45962667, 0.8497196, 0.037927415, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1843254223]
+offset_left = -22.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 22.0
+scale = Vector2(3.080001, 1)
+color = Color(0.45882353, 0.8509804, 0.039215688, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1099885407]
+offset_left = 81.29616
+offset_top = -176.00116
+offset_right = 161.29616
+offset_bottom = 223.99884
+rotation = 3.139181
+scale = Vector2(1, 1.3999994)
+color = Color(0.45962667, 0.8497196, 0.037927415, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=1305534538]
+offset_left = 102.29616
+offset_top = -175.00116
+offset_right = 142.29616
+offset_bottom = -135.00116
+rotation = 3.139181
+scale = Vector2(3.080001, 1)
+color = Color(0.45882353, 0.8509804, 0.039215688, 1)
+
+[node name="GapCenter" type="Marker2D" parent="." unique_id=1091318968]
+position = Vector2(41, -98)
+gizmo_extents = 14.4
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
