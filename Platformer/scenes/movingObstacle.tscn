@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://o4mj2vo3rr4y"]
+
+[ext_resource type="Script" uid="uid://clvlb7k38j1mw" path="res://scenes/moving_obstacle.gd" id="1_fudi1"]
+
+[sub_resource type="Gradient" id="Gradient_3qdi8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fudi1"]
+gradient = SubResource("Gradient_3qdi8")
+width = 40
+height = 100
+fill_from = Vector2(0.53418803, 1)
+fill_to = Vector2(0.5277778, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sttg8"]
+size = Vector2(40, 100)
+
+[node name="MovingObstacle" type="AnimatableBody2D" unique_id=636307338]
+script = ExtResource("1_fudi1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=86628809]
+texture = SubResource("GradientTexture2D_fudi1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1454688191]
+shape = SubResource("RectangleShape2D_sttg8")
+
+[node name="Timer" type="Timer" parent="." unique_id=1082331767]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_flip_timer_timeout"]

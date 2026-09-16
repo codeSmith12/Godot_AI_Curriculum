@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cvf0t7v5mg7x"]
+
+[ext_resource type="Script" uid="uid://d2mee5crf1sag" path="res://scenes/hazard.gd" id="1_rxmjj"]
+
+[sub_resource type="Gradient" id="Gradient_ivx7b"]
+offsets = PackedFloat32Array(0, 0.1713615, 0.9319249)
+colors = PackedColorArray(0, 0, 0, 1, 0.4710206, 0, 0.12952507, 1, 0.6874823, 0, 0.18904945, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rxmjj"]
+gradient = SubResource("Gradient_ivx7b")
+width = 32
+height = 32
+fill_from = Vector2(0.5405983, 1)
+fill_to = Vector2(0.517094, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awlwb"]
+size = Vector2(32, 32)
+
+[node name="Hazard" type="Area2D" unique_id=298285827]
+script = ExtResource("1_rxmjj")
+direction = Vector2(0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1418329910]
+texture = SubResource("GradientTexture2D_rxmjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1257494655]
+shape = SubResource("RectangleShape2D_awlwb")
+
+[node name="FlipTimer" type="Timer" parent="." unique_id=1938278485]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timer_timeout"]
