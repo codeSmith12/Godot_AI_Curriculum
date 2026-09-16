@@ -8,6 +8,8 @@ size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=980844804]
 script = ExtResource("1_g2els")
+speed = 400.0
+jump_velocity = -550.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1201007939]
 scale = Vector2(0.25, 0.25)
@@ -15,3 +17,5 @@ texture = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1364688934]
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1386409037]
