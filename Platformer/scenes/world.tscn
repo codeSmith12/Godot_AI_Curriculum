@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cudlplhtydxum"]
 
+[ext_resource type="Script" uid="uid://jcw2wf5dbrrh" path="res://scenes/world.gd" id="1_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://pbmoqjvodepq" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://o4mj2vo3rr4y" path="res://scenes/movingObstacle.tscn" id="1_qfnet"]
 [ext_resource type="PackedScene" uid="uid://da3arnja7nvk5" path="res://scenes/platform.tscn" id="1_rwgxs"]
@@ -7,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ythhnmcc0548" path="res://scenes/score_label.gd" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://cvf0t7v5mg7x" path="res://scenes/hazard.tscn" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://dw8bcbp0q7mjw" path="res://scenes/rotatingObstacle.tscn" id="7_i7141"]
+[ext_resource type="PackedScene" uid="uid://bjtdfrpqgd2dj" path="res://scenes/goal.tscn" id="8_4mrxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwgxs"]
 size = Vector2(200, 40)
@@ -23,9 +25,10 @@ fill_from = Vector2(0.5195652, 1)
 fill_to = Vector2(0.51521736, 0)
 
 [node name="World" type="Node2D" unique_id=619077012]
+script = ExtResource("1_7r4gi")
 
 [node name="Player" parent="." unique_id=980844804 instance=ExtResource("1_nnsk1")]
-position = Vector2(185, 34)
+position = Vector2(835, -356)
 
 [node name="TerrainParts" type="Node" parent="." unique_id=442821237]
 
@@ -285,6 +288,30 @@ theme_override_font_sizes/font_size = 24
 text = "Score: 0"
 script = ExtResource("4_k0juu")
 
+[node name="WinPanel" type="Panel" parent="UILayer" unique_id=1078143303]
+process_mode = 3
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 460.0
+offset_bottom = 300.0
+
+[node name="WinLabel" type="Label" parent="UILayer/WinPanel" unique_id=1870582271]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 88.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 28
+text = "You Win!"
+
+[node name="RestartButton" type="Button" parent="UILayer/WinPanel" unique_id=1243650344]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 120.0
+offset_right = 170.0
+offset_bottom = 180.0
+text = "Play Again"
+
 [node name="Obstacles" type="Node" parent="." unique_id=1344921468]
 
 [node name="Hazard" parent="Obstacles" unique_id=298285827 instance=ExtResource("5_71j4m")]
@@ -303,6 +330,12 @@ rotation_speed = -90.0
 
 [node name="MovingObstacle" parent="Obstacles" unique_id=636307338 instance=ExtResource("1_qfnet")]
 position = Vector2(661, -108)
+
+[node name="Goal" parent="." unique_id=212168454 instance=ExtResource("8_4mrxx")]
+position = Vector2(90, 343)
+
+[connection signal="pressed" from="UILayer/WinPanel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="reached" from="Goal" to="." method="_on_goal_reached"]
 
 [editable path="TerrainParts/Floor"]
 [editable path="TerrainParts/Floor2"]

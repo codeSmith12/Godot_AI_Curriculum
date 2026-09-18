@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bjtdfrpqgd2dj"]
+
+[ext_resource type="Script" uid="uid://dedy6s5jom2wv" path="res://scenes/goal.gd" id="1_jbojv"]
+
+[sub_resource type="Gradient" id="Gradient_xl315"]
+colors = PackedColorArray(0.9999998, 0.5165566, 0.07529194, 1, 0.9321016, 0.93210167, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jbojv"]
+gradient = SubResource("Gradient_xl315")
+width = 40
+height = 80
+fill_from = Vector2(0.5448718, 1)
+fill_to = Vector2(0.5363248, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx1j4"]
+size = Vector2(40, 80)
+
+[node name="Goal" type="Area2D" unique_id=212168454]
+script = ExtResource("1_jbojv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1729105745]
+texture = SubResource("GradientTexture2D_jbojv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1014248590]
+shape = SubResource("RectangleShape2D_sx1j4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
